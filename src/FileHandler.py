@@ -8,5 +8,7 @@ def readArq(arqName):
         while(data!= ''):
             data = arq.readline()
             if(data!= ''):
+                #clean the \n
+                data = data[:-1] 
                 lstData.append(data)
     return lstData 
