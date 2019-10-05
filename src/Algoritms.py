@@ -24,38 +24,41 @@ def ordenaInsercao(lst:list):
     return lst
 
 
-def selectSort(a: list):
-    i: int =0                                       #1
-    while (i<len(a)):
-        j:int = i
-        min:int = a[i]
-        pos:int = 0
-        while (j<len(a)):
+def selectionsort(a: list):
+    i: int =0                                                                      #1  
+    while (i<len(a)):                                                              #
+        j:int = i                                                                  #
+        min:int = a[i]                                                             #
+        pos:int = 0                                                                #
+        while (j<len(a)):                                                          #
             #a[j] <= min
-            if(PersonHandler.compareTo(a[j],min) != 1): #
-                min = a[j]
-                pos = j
-            j +=1
-        #a[i], a[pos] = a[pos],a[i]
-        swap: int = a[i]
-        a[i] = a[pos]
-        a[pos] = swap               
-        i +=1
+            if(PersonHandler.compareTo(a[j],min) != 1):                            #
+                min = a[j]                                                         #
+                pos = j                                                            #
+            j +=1                                                                  #
+        a[i], a[pos] = a[pos],a[i]                                                 #
+        i +=1                                                                      #
     #
     return a
 
 
-def insertionSort(lst:list):
-    i: int = 2
-    while(i<len(lst)):
-        person = lst[i] 
-        j:int = i-1
+def insertionsort(lst:list):
+    i: int = 2                                                                     #
+    while(i<len(lst)):                                                             #
+        person = lst[i]                                                            #
+        j:int = i-1                                                                #
         #search the true spot of person.
-        while(j>0 and (PersonHandler.compareTo(person,lst[j-1]) == -1)):
-            lst[j] = lst[j-1]
-            j = j - 1
+        while(j>0 and (PersonHandler.compareTo(person,lst[j-1]) == -1)):           #
+            lst[j] = lst[j-1]                                                      #
+            j = j - 1                                                              #
         #end while
-        lst[j] = person
-        i = i+1
+        lst[j] = person                                                            #
+        i = i+1                                                                    #
+    #end while
     return lst 
    
+
+#MergeSort
+#QuickSort
+#HeapSort
+#Timsort/Introsort/Smoothsort/Patiencesorting
