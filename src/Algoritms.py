@@ -1,27 +1,4 @@
-import PersonHandler
-
-def menorNumIndex(start:int,lst:list):
-    menorNum:int = lst[start]
-    index:int = start
-    pos:int = start+1
-    #
-    while(pos<len(lst)):
-        if(lst[pos]<menorNum):
-            menorNum =pos
-            index = pos
-        pos+=1
-    #
-    return index
-
-def ordenaInsercao(lst:list):
-    i:int = 0
-    while(i<len(lst)):
-        num:int = lst[i]
-        index = menorNumIndex(i,lst)
-        lst[i] = lst[index]
-        lst[index] = num
-        i+=1
-    return lst
+from PersonHandler import compareTo
 
 
 def selectionsort(a: list):
@@ -32,7 +9,7 @@ def selectionsort(a: list):
         pos:int = 0                                                                #
         while (j<len(a)):                                                          #
             #a[j] <= min
-            if(PersonHandler.compareTo(a[j],min) != 1):                            #
+            if(compareTo(a[j],min) != 1):                            #
                 min = a[j]                                                         #
                 pos = j                                                            #
             j +=1                                                                  #
@@ -41,14 +18,19 @@ def selectionsort(a: list):
     #
     return a
 
-
+'''
+    Cormen - 2.1 Insertionsort
+    Worst case - n²
+    medium case - n² (worst as the worst case)
+    Best case - n
+'''
 def insertionsort(lst:list):
     i: int = 2                                                                     #
     while(i<len(lst)):                                                             #
         person = lst[i]                                                            #
         j:int = i-1                                                                #
         #search the true spot of person.
-        while(j>0 and (PersonHandler.compareTo(person,lst[j-1]) == -1)):           #
+        while(j>0 and (compareTo(person,lst[j-1]) == -1)):           #
             lst[j] = lst[j-1]                                                      #
             j = j - 1                                                              #
         #end while
@@ -58,7 +40,36 @@ def insertionsort(lst:list):
     return lst 
    
 
-#MergeSort
-#QuickSort
-#HeapSort
+
+'''
+    7. quicksort - Cormen
+    Worst case - theta(n²)
+    Best Practical choice - theta(nlgn)
+    based on the divide-and-conquer paradigm
+'''
+
+def Partition(lst:list,start:int,end:int):
+    end = end-1
+    x:int = lst[end]
+    i:int = start -1
+    for j in range(start,end):
+        #lst[j]<= x
+        if(compareTo(lst[j],x)!=1):
+            i += 1
+            lst[i],lst[j] = lst[j],lst[i]
+        #end if
+    #end for
+    lst[i+1],lst[end]=lst[end],lst[i+1]
+    return i+1
+        
+
+def quicksort(lst:list,start:int,end:int):
+    if start < end:
+        q = Partition(lst,start,end)
+        quicksort(lst,start,end-1)
+        quicksort(lst,start+1,end)
+    #end if
+
+#mergesort
+#heapsort
 #Timsort/Introsort/Smoothsort/Patiencesorting

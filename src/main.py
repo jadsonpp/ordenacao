@@ -1,13 +1,13 @@
 import sys
-import FileHandler,Algoritms
-
+import Algoritms,PersonHandler
+from FileHandler import readArq
 def main():
     if(len(sys.argv) != 3):
         print("Erro na entrada de dados, entre com: ArqEntrada e ArqSaida")
     else:
-        data = FileHandler.readArq(sys.argv[1])
-        Algoritms.selectSort(data)
-        print(data)
+        data = readArq(sys.argv[1])
+        Algoritms.quicksort(data,0,len(data))
+        PersonHandler.showUids(data)
 
         #print(data[0].showData())
 
