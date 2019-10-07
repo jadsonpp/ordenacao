@@ -6,7 +6,7 @@ def main():
         print("Erro na entrada de dados, entre com: ArqEntrada e ArqSaida")
     else:
         data = readArq(sys.argv[1])
-        Algoritms.quicksort(data,0,len(data))
+        Algorithms.quicksort(data,0,len(data))
         PersonHandler.showUids(data)
 
         #print(data[0].showData())
