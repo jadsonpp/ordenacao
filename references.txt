@@ -1,7 +1,8 @@
 # Referencias do trabalho
 
-
-
+Selection Sort:
+    https://en.wikipedia.org/wiki/Selection_sort
+    
 Quick sort:
     Livro: Introuction to Algorithms (Cormen et al) 
     chapter 7. Quick sort
@@ -13,3 +14,5 @@ Insertion Sort:
     Pag 15.
     
 
+Merge Sort:
+    https://en.wikipedia.org/wiki/Merge_sort

@@ -3,19 +3,19 @@ from PersonHandler import compareTo
 
 def selectionsort(lst: list):
     i: int =0                                                                      #1  
-    while (i<len(lst)):                                                              #
-        j:int = i                                                                  #
-        min:int = lst[i]                                                             #
-        pos:int = 0                                                                #
+    while (i<len(lst)-1):                                                              #
+        j:int = i+1                                                                 #
+        min:int = i                                                                #
         while (j<len(lst)):                                                          #
             #lst[j] <= min
-            if(compareTo(lst[j],min) != 1):                            #
-                min = lst[j]                                                         #
-                pos = j                                                            #
-            j +=1                                                                  #
-        lst[i], lst[pos] = lst[pos],lst[i]                                                 #
+            if(compareTo(lst[j],lst[min]) == -1):                            #
+                min = j                                                            #
+            j +=1
+        #end while
+        if(compareTo(lst[i],lst[min]) != 0):                                                                  #
+            lst[i], lst[min] = lst[min],lst[i]                                                 #
         i +=1                                                                      #
-    #
+    #end while
     return lst
 
 '''
@@ -70,6 +70,7 @@ def quicksort(lst:list,start:int,end:int):
         quicksort(lst,start+1,end)
     #end if
 
-#mergesort
+
+
 #heapsort
 #Timsort/Introsort/Smoothsort/Patiencesorting
