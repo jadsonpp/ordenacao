@@ -1,5 +1,5 @@
 import sys
-import Algoritms,PersonHandler
+import Algorithms,PersonHandler
 from FileHandler import readArq
 def main():
     if(len(sys.argv) != 3):

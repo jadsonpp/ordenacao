@@ -35,6 +35,3 @@ def showUids(persons:list):
          
 
 
-#p1 = Person('saodasd@gmail.com','M','123123b123a','1992-10-10',192,78)
-#p2 = Person('saodasda@gmail.com','M','123123b123b','1992-10-10',192,77)
-#print(compareTo(p1,p2))

@@ -1,0 +1,15 @@
+# Referencias do trabalho
+
+
+
+Quick sort:
+    Livro: Introuction to Algorithms (Cormen et al) 
+    chapter 7. Quick sort
+    Pag 145.
+
+Insertion Sort:
+    Livro: Introuction to Algorithms (Cormen et al) 
+    chapter 2.1  Insertion sort
+    Pag 15.
+    
+
