@@ -73,3 +73,37 @@ def quicksort(lst:list,start:int,end:int):
 #mergesort
 #heapsort
 #Timsort/Introsort/Smoothsort/Patiencesorting
+
+
+def heapsort(lst: list) :
+    num = len(lst)
+    i = num // 2
+    while(True):
+        if (i > 0) :
+            i-=1
+            tree = lst[i]
+        else :
+            num-=1
+            if (num <= 0) :
+                print("LAST THINK")
+                return
+            tree = lst[num]
+            lst[num] = lst[0]
+      
+        pai = i
+        filho = i * 2 + 1
+        while (filho < num) :
+            if ((filho + 1 < num)  and  (lst[filho + 1] > lst[filho])):
+                filho+=1
+                
+            if (lst[filho] > tree) :
+                lst[pai] = lst[filho];
+                pai = filho
+                filho = pai * 2 + 1
+            else :
+                break
+        
+        lst[pai] = tree
+    
+        
+        
