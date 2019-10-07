@@ -1,22 +1,22 @@
 from PersonHandler import compareTo
 
 
-def selectionsort(a: list):
+def selectionsort(lst: list):
     i: int =0                                                                      #1  
-    while (i<len(a)):                                                              #
+    while (i<len(lst)):                                                              #
         j:int = i                                                                  #
-        min:int = a[i]                                                             #
+        min:int = lst[i]                                                             #
         pos:int = 0                                                                #
-        while (j<len(a)):                                                          #
-            #a[j] <= min
-            if(compareTo(a[j],min) != 1):                            #
-                min = a[j]                                                         #
+        while (j<len(lst)):                                                          #
+            #lst[j] <= min
+            if(compareTo(lst[j],min) != 1):                            #
+                min = lst[j]                                                         #
                 pos = j                                                            #
             j +=1                                                                  #
-        a[i], a[pos] = a[pos],a[i]                                                 #
+        lst[i], lst[pos] = lst[pos],lst[i]                                                 #
         i +=1                                                                      #
     #
-    return a
+    return lst
 
 '''
     Cormen - 2.1 Insertionsort
