@@ -2,17 +2,27 @@
 
 Selection Sort:
     https://en.wikipedia.org/wiki/Selection_sort
+    flowchart from :
+        https://www.geeksforgeeks.org/selection-sort/
+
     
 Quick sort:
     Livro: Introuction to Algorithms (Cormen et al) 
     chapter 7. Quick sort
-    Pag 145.
+    Pag 146.
 
 Insertion Sort:
+    https://pt.wikipedia.org/wiki/Insertion_sort
+    
     Livro: Introuction to Algorithms (Cormen et al) 
     chapter 2.1  Insertion sort
-    Pag 15.
+    Pag 17.
     
 
 Merge Sort:
     https://en.wikipedia.org/wiki/Merge_sort
+
+
+Heap Sort:
+    https://www.algorithmist.com/index.php/Heap_sort
+    https://en.wikipedia.org/wiki/Heapsort

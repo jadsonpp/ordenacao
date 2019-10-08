@@ -18,27 +18,32 @@ def selectionsort(lst: list):
     #end while
     return lst
 
+
 '''
     Cormen - 2.1 Insertionsort
     Worst case - n²
     medium case - n² (worst as the worst case)
     Best case - n
 '''
-def insertionsort(lst:list):
-    i: int = 2                                                                     #
-    while(i<len(lst)):                                                             #
-        person = lst[i]                                                            #
-        j:int = i-1                                                                #
-        #search the true spot of person.
-        while(j>0 and (compareTo(person,lst[j-1]) == -1)):           #
-            lst[j] = lst[j-1]                                                      #
+
+
+def insertionsort(lst: list):
+    i: int = 2                                                                    #
+    while(i < len(lst)):                                                             #
+        #
+        person = lst[i]
+        j:  int = i-1                                                                #
+        # search the true spot of person.
+        #Person < lst[j]
+        while(j >= 0 and (compareTo(person, lst[j]) == -1)):           #
+            lst[j+1] = lst[j]
             j = j - 1                                                              #
-        #end while
-        lst[j] = person                                                            #
+        # end while
+        #
+        lst[j+1] = person
         i = i+1                                                                    #
-    #end while
-    return lst 
-   
+    # end while
+    return lst
 
 
 '''
@@ -48,29 +53,136 @@ def insertionsort(lst:list):
     based on the divide-and-conquer paradigm
 '''
 
-def Partition(lst:list,start:int,end:int):
+
+def Partition(lst: list, start: int, end: int):
     end = end-1
-    x:int = lst[end]
-    i:int = start -1
-    for j in range(start,end):
-        #lst[j]<= x
-        if(compareTo(lst[j],x)!=1):
-            i += 1
-            lst[i],lst[j] = lst[j],lst[i]
-        #end if
-    #end for
-    lst[i+1],lst[end]=lst[end],lst[i+1]
-    return i+1
-        
+    pivot: person = lst[end]
+    lower: int = start - 1
+    for j in range(start, end):
+        #lst[j]<= pivot
+        if(compareTo(lst[j], pivot) != 1):
+            lower += 1
+            lst[lower], lst[j] = lst[j], lst[lower]
+        # end if
+    # end for
+    lst[lower+1], lst[end] = lst[end], lst[lower+1]
+    return lower+1
 
-def quicksort(lst:list,start:int,end:int):
+
+def quicksort(lst: list, start: int, end: int):
     if start < end:
-        q = Partition(lst,start,end)
-        quicksort(lst,start,end-1)
-        quicksort(lst,start+1,end)
-    #end if
+        q = Partition(lst, start, end)
+        quicksort(lst, start, end-1)
+        quicksort(lst, start+1, end)
+    # end if
 
 
+def heapsort(lst: list):
+    buildMaxHeap(lst)
+    i = len(lst)-1
+    while (i >= 0 ):
+        lst[0],lst[i] = lst[i],lst[0]
+        i -= 1 
+        heapify(lst,1)
 
-#heapsort
-#Timsort/Introsort/Smoothsort/Patiencesorting
+def buildMaxHeap(lst:list):
+    i = len(lst)//2
+    while(i>0):
+        heapify(lst,i)
+        i-=1
+
+def heapify(lst:list,i:int):
+    # iList = Tamanho da lista, i = index que o buildHeap manda.
+    esq = 2 * i 
+    dir = (2*i) + 1
+    iLst = len(lst)
+    #lst[esq] > lst[i]) e esq <= tamanho da lista
+    if ((esq <= iLst) and (compareTo(lst[esq],lst[i]) == 1)):
+        max:int = esq
+    else:
+        max:int = i
+    #lst[dir]>lst[max] e dir <= tamanho da lista
+    if((dir <= iLst) and (compareTo(lst[dir],lst[max]) == 1)):
+        max = dir
+
+    if(max != i):
+        lst[i],lst[max] = lst[max],lst[i]
+        heapify(lst,max) 
+
+# mergesort
+# Timsort/Introsort/Smoothsort/Patiencesorting
+
+
+'''
+def mergeSort(lst):
+
+    tam = len(lst)
+
+    if tam > 1:
+        meio = tam//2
+        lstEsq = lst[:meio]
+        lstDir = lst[meio:]
+
+        mergeSort(lstEsq)
+        mergeSort(lstDir)
+
+        i = 0
+        j = 0
+        k = 0
+        tamEsq = len(lstEsq)
+        tamDir = len(lstDir)
+        while i < tamEsq and j < tamDir:
+            if lstEsq[i] < lstDir[j]:
+                lst[k] = lstEsq[i]
+                i += 1
+            else:
+                lst[k] = lstDir[j]
+                j += 1
+            k += 1
+        while i < tamEsq:
+            lst[k] = lstEsq[i]
+            i += 1
+            k += 1
+        while j < tamDir:
+            lst[k] = lstDir[j]
+            j += 1
+            k += 1
+
+def mergesort(lst:list,start:int,end:int):
+    if(start < end):
+        mid= (start+end)//2
+        mergesort(lst,start,mid)
+        mergesort(lst,mid+1,end)
+        merge(lst,start,mid,end)
+    #end mergesort
+
+def merge(lst:list,start:int,mid:int,end:int):
+    #separadores
+    n = mid - start + 1 #primeira partição
+    m = end - mid       #segunda partição
+    #Listas
+    A1 = lst[:n+1]
+    A2 = lst[:m+1]
+    #
+    for i in range (n):
+        A1 = lst[start+i-1]
+    #end for
+    for j in range (m):
+        A2 = lst[mid + j]
+    #end for
+    i=0
+    j=0
+
+    for k in range(start,end):
+        #A1[i] <= A2[j]
+        if(compareTo(A1[i],A2[j])!= 1):
+            lst[k] = A1[i]
+            i= int(i) + 1
+        #lst[k]==A2[j]
+        if(compareTo(lst[k],A2[j])==0):
+            j= int(j)+ 1
+        #
+    #end for
+
+
+'''
