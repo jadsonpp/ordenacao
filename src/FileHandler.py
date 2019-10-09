@@ -4,7 +4,7 @@ import csv
 #function that read a file and return a list with the data.
 def readArq(arqName):
     lstData: list = []
-    with open('./trab2-data/'+arqName,'r') as arq:
+    with open('src/trab2-data/'+arqName,'r') as arq:
         data = arq.readline() 
         while(data!= ''):
             data = arq.readline()
@@ -22,7 +22,7 @@ def readArq(arqName):
 #function that read a file and return a list with the data.
 def readArqCsv(arqName):
     lstData: list = []
-    with open('./trab2-data/'+arqName,newline='') as csvFile:
+    with open('src/trab2-data/'+arqName,newline='') as csvFile:
         #Split the csv file
         datas = csv.reader(csvFile,delimiter=',')
         #jump the header
@@ -31,10 +31,13 @@ def readArqCsv(arqName):
             #Insert the data on person class.
             person = Person(data[0],data[1],data[2],data[3],data[4],data[5])        
             lstData.append(person)    
-        #end for
-        print(len(lstData)) 
+        #end for 
     #showUids(lstData)
     return lstData 
 
-
+def writeArqCsv(arqName,sort,tamanho,tempo):
+    with open('src/trab2-data/'+arqName, 'a', newline='') as csvfile:
+        datawriter = csv.writer(csvfile, delimiter=',')
+        datawriter.writerow([sort,tamanho,tempo])
+    return 0
 
