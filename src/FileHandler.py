@@ -4,7 +4,7 @@ import csv
 #function that read a file and return a list with the data.
 def readArq(arqName):
     lstData: list = []
-    with open('./trab2-data/'+arqName,'r') as arq:
+    with open('src/trab2-data/'+arqName,'r') as arq:
         data = arq.readline() 
         while(data!= ''):
             data = arq.readline()

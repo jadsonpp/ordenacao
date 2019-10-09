@@ -72,8 +72,8 @@ def Partition(lst: list, start: int, end: int):
 def quicksort(lst: list, start: int, end: int):
     if start < end:
         q = Partition(lst, start, end)
-        quicksort(lst, start, end-1)
-        quicksort(lst, start+1, end)
+        quicksort(lst, start, q)
+        quicksort(lst, q+1, end)
     # end if
 
 
