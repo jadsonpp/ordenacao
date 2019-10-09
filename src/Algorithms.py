@@ -93,21 +93,22 @@ def buildMaxHeap(lst:list):
 
 def heapify(lst:list,i:int):
     # iList = Tamanho da lista, i = index que o buildHeap manda.
-    esq = 2 * i 
-    dir = (2*i) + 1
+    left = 2 * i + 1 
+    right = (2*i) + 2
     iLst = len(lst)
-    #lst[esq] > lst[i]) e esq <= tamanho da lista
-    if ((esq <= iLst) and (compareTo(lst[esq],lst[i]) == 1)):
-        max:int = esq
+    #lst[left] > lst[i]) e esq <= tamanho da lista
+    #iMax is the index of the largest num.
+    if ((left < iLst) and (compareTo(lst[left],lst[i]) == 1)):
+        iMax:int = left
     else:
-        max:int = i
+        iMax:int = i
     #lst[dir]>lst[max] e dir <= tamanho da lista
-    if((dir <= iLst) and (compareTo(lst[dir],lst[max]) == 1)):
-        max = dir
+    if((right < iLst) and (compareTo(lst[right],lst[iMax]) == 1)):
+        iMax = right
 
-    if(max != i):
-        lst[i],lst[max] = lst[max],lst[i]
-        heapify(lst,max) 
+    if(iMax != i):
+        lst[i],lst[iMax] = lst[iMax],lst[i]
+        heapify(lst,iMax) 
 
 # mergesort
 # Timsort/Introsort/Smoothsort/Patiencesorting

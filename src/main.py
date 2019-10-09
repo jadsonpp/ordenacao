@@ -1,15 +1,14 @@
 import sys
 import Algorithms,PersonHandler
-from FileHandler import readArq
+from FileHandler import readArq,readArqCsv
 def main():
     if(len(sys.argv) != 3):
         print("Erro na entrada de dados, entre com: ArqEntrada e ArqSaida")
     else:
-        data = readArq(sys.argv[1])
-        Algorithms.insertionsort(data)
-        PersonHandler.showUids(data)
-
-        #print(data[0].showData())
+        data = readArqCsv(sys.argv[1])
+        #Algorithms.heapsort(data)
+        #print('x')
+        
 
     #inputName = parseInputFileName(args)
     #outputName = parseOutputFileName(args)

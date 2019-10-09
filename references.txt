@@ -1,5 +1,8 @@
 # Referencias do trabalho
 
+csv:
+    https://docs.python.org/3/library/csv.html
+
 Selection Sort:
     https://en.wikipedia.org/wiki/Selection_sort
     flowchart from :
