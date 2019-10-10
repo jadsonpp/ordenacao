@@ -1,9 +1,9 @@
 class Person:
-    def __init__(self,email,gender,uid,birthday,height,weight):
+    def __init__(self,email,gender,uid,birthdate,height,weight):
         self.email      = email
         self.gender     = gender
         self.uid        = uid
-        self.birthday   = birthday
+        self.birthdate   = birthdate
         self.height     = height
         self.weight     = weight
 
@@ -11,7 +11,7 @@ class Person:
         print("E-mail: "+self.email)
         print("Gender: "+self.gender)
         print("Uid: "+self.uid)
-        print("birthday: "+self.birthday)
+        print("birthdate: "+self.birthdate)
         print("height: "+self.height)
         print("weight: "+self.weight)
     

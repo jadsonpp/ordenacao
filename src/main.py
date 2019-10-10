@@ -15,35 +15,55 @@ def main():
             fim = time.time()
             tempo = fim-ini
             print('selectionsort    ',len(data),'    ',tempo,'\n')
-            writeArqCsv(sys.argv[2],'selectionsort',len(data),tempo)
+            print("Criando arquivo de saída...\n")
+            writeArqCsv(data,sys.argv[2])
+            print("Arquivo de saída criado!\n")
+
+
         elif 'insertsort' in sys.argv[2]:
             ini = time.time()
             Algorithms.heapsort(data)
             fim = time.time()
             tempo = fim-ini
             print('insertsort    ',len(data),'    ',tempo,'\n')
-            writeArqCsv(sys.argv[2],'insertsort',len(data),tempo)
+            print("Criando arquivo de saída...\n")
+            writeArqCsv(data,sys.argv[2])
+            print("Arquivo de saída criado!\n")
+
+
         elif 'mergesort' in sys.argv[2]:
             ini = time.time()
             Algorithms.mergesort(data)
             fim = time.time()
             tempo = fim-ini
             print('mergesort    ',len(data),'    ',tempo,'\n')
-            writeArqCsv(sys.argv[2],'mergesort',len(data),tempo)
+            print("Criando arquivo de saída...\n")
+            writeArqCsv(data,sys.argv[2])
+            print("Arquivo de saída criado!\n")
+
+
         elif 'quicksort' in sys.argv[2]:
             ini = time.time()
-            Algorithms.quicksort(data)
+            Algorithms.quicksort(data,0,len(data)-1)
             fim = time.time()
             tempo = fim-ini
             print('quicksort    ',len(data),'    ',tempo,'\n')
-            writeArqCsv(sys.argv[2],'quicksort',len(data),tempo)
+            print("Criando arquivo de saída...\n")
+            writeArqCsv(data,sys.argv[2])
+            print("Arquivo de saída criado!\n")
+
+
         elif 'heapsort' in sys.argv[2]:
             ini = time.time()
             Algorithms.heapsort(data)
             fim = time.time()
             tempo = fim-ini
-            print('heapsort    ',len(data),'    ',tempo,'\n')
-            writeArqCsv(sys.argv[2],'heapsort',len(data),tempo)
+            print('heapsort    ',len(data),'    ',tempo,'\n',data[0])
+            print("Criando arquivo de saída...\n")
+            writeArqCsv(data,sys.argv[2])
+            print("Arquivo de saída criado!\n")
+
+            
         else:
             print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')
         #print('x')

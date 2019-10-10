@@ -35,9 +35,10 @@ def readArqCsv(arqName):
     #showUids(lstData)
     return lstData 
 
-def writeArqCsv(arqName,sort,tamanho,tempo):
-    with open('src/trab2-data/'+arqName, 'a', newline='') as csvfile:
+def writeArqCsv(datas,arqName):
+    with open('src/trab2-data-output/'+arqName, 'w', newline='') as csvfile:
         datawriter = csv.writer(csvfile, delimiter=',')
-        datawriter.writerow([sort,tamanho,tempo])
+        for data in datas:
+            datawriter.writerow([data.email,data.gender,data.uid,data.birthdate,data.height,data.weight])
     return 0
 

@@ -54,27 +54,23 @@ def insertionsort(lst: list):
 '''
 
 
-def Partition(lst: list, start: int, end: int):
-    end = end-1
-    pivot: person = lst[end]
-    lower: int = start - 1
-    for j in range(start, end):
-        #lst[j]<= pivot
-        if(compareTo(lst[j], pivot) != 1):
-            lower += 1
-            lst[lower], lst[j] = lst[j], lst[lower]
-        # end if
-    # end for
-    lst[lower+1], lst[end] = lst[end], lst[lower+1]
-    return lower+1
+def quicksort(lista,ini,fim):
+    if(ini<fim):
+        p = particiona(lista,ini,fim)
+        quicksort(lista,ini,p-1)
+        quicksort(lista,p+1,fim)
 
-
-def quicksort(lst: list, start: int, end: int):
-    if start < end:
-        q = Partition(lst, start, end)
-        quicksort(lst, start, q)
-        quicksort(lst, q+1, end)
-    # end if
+def particiona(lista,ini,fim):
+    pivot = lista[fim]
+    i = ini-1
+    for j in range(ini,fim):
+        if (compareTo(lista[j],pivot)==-1):
+            i = i + 1
+            lista[i],lista[j] = lista[j],lista[i]
+    if (compareTo(pivot,lista[i+1])==-1):
+        lista[i+1],lista[fim] = lista[fim],lista[i+1]
+    return i+1
+    
 
 
 def heapsort(lst: list):
