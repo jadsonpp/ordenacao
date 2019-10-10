@@ -1,4 +1,5 @@
-import PersonHandler
+from PersonHandler import Person,showUids
+import csv
 
 #function that read a file and return a list with the data.
 def readArq(arqName):
@@ -13,6 +14,30 @@ def readArq(arqName):
                 #split the list 
                 data = data.split(',')
                 #Insert the data on person class.
-                person = PersonHandler.Person(data[0],data[1],data[2],data[3],data[4],data[5])
+                person = Person(data[0],data[1],data[2],data[3],data[4],data[5])
                 lstData.append(person)
+    
     return lstData 
+
+#function that read a file and return a list with the data.
+def readArqCsv(arqName):
+    lstData: list = []
+    with open('src/trab2-data/'+arqName,newline='') as csvFile:
+        #Split the csv file
+        datas = csv.reader(csvFile,delimiter=',')
+        #jump the header
+        next(datas)
+        for data in datas:
+            #Insert the data on person class.
+            person = Person(data[0],data[1],data[2],data[3],data[4],data[5])        
+            lstData.append(person)    
+        #end for 
+    #showUids(lstData)
+    return lstData 
+
+def writeArqCsv(arqName,sort,tamanho,tempo):
+    with open('src/trab2-data/'+arqName, 'a', newline='') as csvfile:
+        datawriter = csv.writer(csvfile, delimiter=',')
+        datawriter.writerow([sort,tamanho,tempo])
+    return 0
+
