@@ -6,8 +6,15 @@ def main():
     if(len(sys.argv) != 3):
         print("Erro na entrada de dados, entre com: ArqEntrada e ArqSaida")
     else:
-        data = readArqCsv(sys.argv[1])
-        data = data
+        
+        data = readArq(sys.argv[1])
+        ini = time.time()
+        Algorithms.quicksort(data,0,len(data))
+        fim = time.time()
+        tempo = fim-ini
+        print('quicksort    ',len(data),'    ',tempo,'\n')
+        writeArqCsv(sys.argv[2],'quicksort',len(data),tempo)
+        
 
         if 'selectsort' in sys.argv[2]:
             ini = time.time()

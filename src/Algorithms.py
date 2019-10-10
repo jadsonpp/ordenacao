@@ -79,32 +79,30 @@ def heapsort(lst: list):
     while (i >= 0 ):
         lst[0],lst[i] = lst[i],lst[0]
         i -= 1 
-        heapify(lst,1)
+        heapify(lst,i,0)
 
 def buildMaxHeap(lst:list):
-    i = len(lst)//2
-    while(i>0):
-        heapify(lst,i)
+    i = (len(lst)//2)
+    while(i>=0):
+        heapify(lst,len(lst),i)
         i-=1
 
-def heapify(lst:list,i:int):
+def heapify(lst:list,tam:int,i:int):
     # iList = Tamanho da lista, i = index que o buildHeap manda.
-    left = 2 * i + 1 
-    right = (2*i) + 2
-    iLst = len(lst)
+    left = 2 * i 
+    right = (2*i) + 1 
+    iMax:int = i
     #lst[left] > lst[i]) e esq <= tamanho da lista
     #iMax is the index of the largest num.
-    if ((left < iLst) and (compareTo(lst[left],lst[i]) == 1)):
-        iMax:int = left
-    else:
-        iMax:int = i
+    if ((left < tam) and (compareTo(lst[left],lst[iMax]) == 1)):
+        iMax = left
     #lst[dir]>lst[max] e dir <= tamanho da lista
-    if((right < iLst) and (compareTo(lst[right],lst[iMax]) == 1)):
+    if((right < tam) and (compareTo(lst[right],lst[iMax]) == 1)):
         iMax = right
 
     if(iMax != i):
         lst[i],lst[iMax] = lst[iMax],lst[i]
-        heapify(lst,iMax) 
+        heapify(lst,tam,iMax) 
 
 # mergesort
 # Timsort/Introsort/Smoothsort/Patiencesorting
