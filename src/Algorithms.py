@@ -107,7 +107,32 @@ def heapify(lst:list,tam:int,i:int):
 # mergesort
 # Timsort/Introsort/Smoothsort/Patiencesorting
 
+# 
+def sortCollection(algorithm: str,lstDatas : list ):
+    ini = time.time()
+    # "Switch case"
+    if(algorithm == 'selectionsort'):
+        lstDatas = selectionsort(lstDatas)
+    elif (algorithm == 'insertionsort'):
+        lstDatas = insertionsort(lstDatas)
+    elif(algorithm == 'quicksort'):
+        lstDatas = quicksort(lstDatas,0,len(lstDatas))
+    elif(algorithm == 'heapsort'):
+        lstDatas = quicksort(lstDatas)
+    '''
+        <A SER IMPLEMENTADO>
+    elif(algorithm == 'mergesort'):
+        lstDatas = mergesort(lstDatas)
+    
+    else:
+        print('Algorithm not found')
+        print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')
+    '''
+    fim = time.time()
+    tempo = fim-ini
 
+    return tempo
+    
 '''
 def mergeSort(lst):
 
