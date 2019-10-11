@@ -1,5 +1,5 @@
-from PersonHandler import compareTo
-
+from PersonHandler import *
+import time
 
 def selectionsort(lst: list):
     i: int =0                                                                      #1  
@@ -53,24 +53,26 @@ def insertionsort(lst: list):
     based on the divide-and-conquer paradigm
 '''
 
+def Partition(lst: list, start: int, end: int):
+    pivot: person = lst[end]
+    lower: int = start - 1
+    for i in range(start, end):
+        #lst[i]<= pivot
+        if(compareTo(lst[i], pivot) == -1):
+            lower += 1
+            lst[lower], lst[i] = lst[i], lst[lower]
+        # end if
+    # end for
+    lst[lower+1], lst[end] = lst[end], lst[lower+1]
+    return lower+1
 
-def quicksort(lista,ini,fim):
-    if(ini<fim):
-        p = particiona(lista,ini,fim)
-        quicksort(lista,ini,p-1)
-        quicksort(lista,p+1,fim)
 
-def particiona(lista,ini,fim):
-    pivot = lista[fim]
-    i = ini-1
-    for j in range(ini,fim):
-        if (compareTo(lista[j],pivot)==-1):
-            i = i + 1
-            lista[i],lista[j] = lista[j],lista[i]
-    if (compareTo(pivot,lista[i+1])==-1):
-        lista[i+1],lista[fim] = lista[fim],lista[i+1]
-    return i+1
-    
+def quicksort(lst: list, start: int, end: int):
+    if start < end:
+        partition = Partition(lst, start, end)
+        quicksort(lst, start, partition-1)
+        quicksort(lst, partition+1, end)
+    # end if
 
 
 def heapsort(lst: list):
@@ -107,18 +109,17 @@ def heapify(lst:list,tam:int,i:int):
 # mergesort
 # Timsort/Introsort/Smoothsort/Patiencesorting
 
-# 
-def sortCollection(algorithm: str,lstDatas : list ):
+def sortCollection(algorithm: str,lstData : list ):
     ini = time.time()
     # "Switch case"
     if(algorithm == 'selectionsort'):
-        lstDatas = selectionsort(lstDatas)
+        lstData = selectionsort(lstData)
     elif (algorithm == 'insertionsort'):
-        lstDatas = insertionsort(lstDatas)
+        lstData = insertionsort(lstData)
     elif(algorithm == 'quicksort'):
-        lstDatas = quicksort(lstDatas,0,len(lstDatas))
+        quicksort(lstData,0,len(lstData)-1)
     elif(algorithm == 'heapsort'):
-        lstDatas = quicksort(lstDatas)
+        heapsort(lstData)
     '''
         <A SER IMPLEMENTADO>
     elif(algorithm == 'mergesort'):
@@ -130,9 +131,11 @@ def sortCollection(algorithm: str,lstDatas : list ):
     '''
     fim = time.time()
     tempo = fim-ini
-
+    #showUids(lstData)
     return tempo
-    
+
+
+
 '''
 def mergeSort(lst):
 

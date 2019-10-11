@@ -1,5 +1,6 @@
 import sys
 import time
+from Algorithms import *
 import Algorithms,PersonHandler
 from FileHandler import readArq,readArqCsv,writeArqCsv
 def main():
@@ -8,10 +9,9 @@ def main():
     else:
         algorithm:str = sys.argv[1]
         inputData:list = readArq(sys.argv[2])
-        outputData = readArq(sys.argv[3])
+        outputData = sys.argv[3]
         data = sortCollection(algorithm,inputData)
         print(data)               
-        #print('x')
         
 
     #inputName = parseInputFileName(args)

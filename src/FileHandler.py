@@ -1,10 +1,14 @@
 from PersonHandler import Person,showUids
 import csv
+import os
+
+
 
 #function that read a file and return a list with the data.
 def readArq(arqName):
     lstData: list = []
-    with open('src/trab2-data/'+arqName,'r') as arq:
+    cwd = os.getcwd()+'/trab2-data'  # Get the current working directory (cwd)
+    with open(os.path.join(cwd, arqName),'r') as arq:
         data = arq.readline() 
         while(data!= ''):
             data = arq.readline()
@@ -22,7 +26,7 @@ def readArq(arqName):
 #function that read a file and return a list with the data.
 def readArqCsv(arqName):
     lstData: list = []
-    with open('src/trab2-data/'+arqName,newline='') as csvFile:
+    with open('/src/trab2-data/'+arqName,newline='') as csvFile:
         #Split the csv file
         datas = csv.reader(csvFile,delimiter=',')
         #jump the header
