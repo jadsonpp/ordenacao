@@ -1,6 +1,12 @@
 from PersonHandler import *
 import time
 
+'''
+    Worst case - n²
+    medium case - n²
+    Best case - n²
+'''
+
 def selectionsort(lst: list):
     i: int =0                                                                      #1  
     while (i<len(lst)-1):                                                              #
@@ -25,8 +31,6 @@ def selectionsort(lst: list):
     medium case - n² (worst as the worst case)
     Best case - n
 '''
-
-
 def insertionsort(lst: list):
     i: int = 2                                                                    #
     while(i < len(lst)):                                                             #
@@ -90,12 +94,11 @@ def buildMaxHeap(lst:list):
         i-=1
 
 def heapify(lst:list,tam:int,i:int):
-    # iList = Tamanho da lista, i = index que o buildHeap manda.
     left = 2 * i 
     right = (2*i) + 1 
+    #iMax is the index of the largest num.
     iMax:int = i
     #lst[left] > lst[i]) e esq <= tamanho da lista
-    #iMax is the index of the largest num.
     if ((left < tam) and (compareTo(lst[left],lst[iMax]) == 1)):
         iMax = left
     #lst[dir]>lst[max] e dir <= tamanho da lista
@@ -106,8 +109,38 @@ def heapify(lst:list,tam:int,i:int):
         lst[i],lst[iMax] = lst[iMax],lst[i]
         heapify(lst,tam,iMax) 
 
-# mergesort
+def mergesort(lst:list):
+    if(len(lst) <= 1):
+        return lst
+
+    mid = (len(lst))//2
+    lstLeft = lst[:mid]
+    lstRight = lst[mid:]
+    lstLeft = mergesort(lstLeft)
+    lstRight = mergesort(lstRight)
+
+    return merge(lstLeft,lstRight)
+
+def merge(lstLeft:list,lstRight:list):
+    lstMerge = []
+    while (lstLeft != [] and lstRight != []):
+        #lstLeft <= lstRight
+        if ((compareTo(lstLeft[0],lstRight[0]) != 1)):
+            lstMerge.append(lstLeft.pop(0))
+        else:
+            lstMerge.append(lstRight.pop(0))
+
+    if(lstLeft!=[]):
+        while(lstLeft != []):
+            lstMerge.append(lstLeft.pop(0))
+    if(lstRight != []):
+        while(lstRight != []):
+            lstMerge.append(lstRight.pop(0))  
+
+    return lstMerge
+
 # Timsort/Introsort/Smoothsort/Patiencesorting
+
 
 def sortCollection(algorithm: str,lstData : list ):
     ini = time.time()
@@ -120,11 +153,11 @@ def sortCollection(algorithm: str,lstData : list ):
         quicksort(lstData,0,len(lstData)-1)
     elif(algorithm == 'heapsort'):
         heapsort(lstData)
-    '''
-        <A SER IMPLEMENTADO>
+
     elif(algorithm == 'mergesort'):
-        lstDatas = mergesort(lstDatas)
+        mergesort(lstData)
     
+    '''
     else:
         print('Algorithm not found')
         print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')
@@ -133,79 +166,3 @@ def sortCollection(algorithm: str,lstData : list ):
     tempo = fim-ini
     #showUids(lstData)
     return tempo
-
-
-
-'''
-def mergeSort(lst):
-
-    tam = len(lst)
-
-    if tam > 1:
-        meio = tam//2
-        lstEsq = lst[:meio]
-        lstDir = lst[meio:]
-
-        mergeSort(lstEsq)
-        mergeSort(lstDir)
-
-        i = 0
-        j = 0
-        k = 0
-        tamEsq = len(lstEsq)
-        tamDir = len(lstDir)
-        while i < tamEsq and j < tamDir:
-            if lstEsq[i] < lstDir[j]:
-                lst[k] = lstEsq[i]
-                i += 1
-            else:
-                lst[k] = lstDir[j]
-                j += 1
-            k += 1
-        while i < tamEsq:
-            lst[k] = lstEsq[i]
-            i += 1
-            k += 1
-        while j < tamDir:
-            lst[k] = lstDir[j]
-            j += 1
-            k += 1
-
-def mergesort(lst:list,start:int,end:int):
-    if(start < end):
-        mid= (start+end)//2
-        mergesort(lst,start,mid)
-        mergesort(lst,mid+1,end)
-        merge(lst,start,mid,end)
-    #end mergesort
-
-def merge(lst:list,start:int,mid:int,end:int):
-    #separadores
-    n = mid - start + 1 #primeira partição
-    m = end - mid       #segunda partição
-    #Listas
-    A1 = lst[:n+1]
-    A2 = lst[:m+1]
-    #
-    for i in range (n):
-        A1 = lst[start+i-1]
-    #end for
-    for j in range (m):
-        A2 = lst[mid + j]
-    #end for
-    i=0
-    j=0
-
-    for k in range(start,end):
-        #A1[i] <= A2[j]
-        if(compareTo(A1[i],A2[j])!= 1):
-            lst[k] = A1[i]
-            i= int(i) + 1
-        #lst[k]==A2[j]
-        if(compareTo(lst[k],A2[j])==0):
-            j= int(j)+ 1
-        #
-    #end for
-
-
-'''

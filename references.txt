@@ -27,7 +27,7 @@ Insertion Sort:
 
 Merge Sort:
     https://en.wikipedia.org/wiki/Merge_sort
-
+    https://pt.wikipedia.org/wiki/Merge_sort
 
 Heap Sort:
     https://www.algorithmist.com/index.php/Heap_sort

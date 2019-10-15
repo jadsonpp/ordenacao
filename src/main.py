@@ -12,7 +12,7 @@ def main():
         outputData = sys.argv[3]
         data = sortCollection(algorithm,inputData)
         print(algorithm,data,len(inputData))
-        testeArqCsv(data,algorithm,len(inputData),sys.argv[3])
+        #testeArqCsv(data,algorithm,len(inputData),sys.argv[3])
                        
         
 
