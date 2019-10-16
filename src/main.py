@@ -10,9 +10,12 @@ def main():
         algorithm:str = sys.argv[1]
         inputData:list = readArqCsv(sys.argv[2])
         outputData = sys.argv[3]
+        ini = time.time()
         data = sortCollection(algorithm,inputData)
-        print(algorithm,data,len(inputData))
-        #testeArqCsv(data,algorithm,len(inputData),sys.argv[3])
+        fim = time.time()
+        tempo = fim-ini
+        print(algorithm,tempo,len(inputData))
+        testeArqCsv(tempo,algorithm,len(inputData),sys.argv[3])
                        
         
 

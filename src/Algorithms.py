@@ -135,7 +135,7 @@ def merge(lstLeft:list,lstRight:list):
             lstMerge.append(lstLeft.pop(0))
     if(lstRight != []):
         while(lstRight != []):
-            lstMerge.append(lstRight.pop(0))  
+            lstMerge.append(lstRight.pop(0)) 
 
     return lstMerge
 
@@ -143,26 +143,23 @@ def merge(lstLeft:list,lstRight:list):
 
 
 def sortCollection(algorithm: str,lstData : list ):
-    ini = time.time()
     # "Switch case"
     if(algorithm == 'selectionsort'):
         lstData = selectionsort(lstData)
     elif (algorithm == 'insertionsort'):
         lstData = insertionsort(lstData)
     elif(algorithm == 'quicksort'):
-        quicksort(lstData,0,len(lstData)-1)
+        lstData = quicksort(lstData,0,len(lstData)-1)
     elif(algorithm == 'heapsort'):
-        heapsort(lstData)
+        lstData = heapsort(lstData)
 
     elif(algorithm == 'mergesort'):
-        mergesort(lstData)
+        lstData = mergesort(lstData)
     
     '''
     else:
         print('Algorithm not found')
         print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')
     '''
-    fim = time.time()
-    tempo = fim-ini
     #showUids(lstData)
-    return tempo
+    return lstData
