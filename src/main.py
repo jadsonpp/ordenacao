@@ -12,7 +12,7 @@ def main():
         outputData = sys.argv[3]
         ini = time.time()
         data = sortCollection(algorithm,inputData)
-        fim = time.time()
+        fim = time.time() 
         tempo = fim-ini
         print(algorithm,tempo,len(inputData))
         testeArqCsv(tempo,algorithm,len(inputData),sys.argv[3])

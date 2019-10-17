@@ -111,74 +111,46 @@ def heapify(lst:list,tam:int,i:int):
         lst[i],lst[iMax] = lst[iMax],lst[i]
         heapify(lst,tam,iMax) 
 
-def mergesort(lst:list):
-    if(len(lst) <= 1):
-        return lst
 
-    mid = (len(lst))//2
-    lstLeft = lst[:mid]
-    lstRight = lst[mid:]
-    lstLeft = mergesort(lstLeft)
-    lstRight = mergesort(lstRight)
 
-    return merge(lstLeft,lstRight)
-
-def merge(lstLeft:list,lstRight:list):
-    lstMerge = []
-    while (lstLeft != [] and lstRight != []):
-        #lstLeft <= lstRight
-        if ((compareTo(lstLeft[0],lstRight[0]) != 1)):
-            lstMerge.append(lstLeft.pop(0))
-        else:
-            lstMerge.append(lstRight.pop(0))
-
-    if(lstLeft!=[]):
-        while(lstLeft != []):
-            lstMerge.append(lstLeft.pop(0))
-    if(lstRight != []):
-        while(lstRight != []):
-            lstMerge.append(lstRight.pop(0)) 
-
-    return lstMerge
-
-# Timsort/Introsort/Smoothsort/Patiencesorting
-
-<<<<<<< HEAD
-# Executa o algoritmo e retorna o tempo gasto.
-=======
-
->>>>>>> 9d7f84aa129e886e11f2190261d6524bfc431206
-def sortCollection(algorithm: str,lstData : list ):
-    # "Switch case"
-    if(algorithm == 'selectionsort'):
-        lstData = selectionsort(lstData)
-    elif (algorithm == 'insertionsort'):
-        lstData = insertionsort(lstData)
-    elif(algorithm == 'quicksort'):
-        lstData = quicksort(lstData,0,len(lstData)-1)
-    elif(algorithm == 'heapsort'):
-<<<<<<< HEAD
-        heapsort(lstData)
-    elif(algorithm == 'introsort'):
-        introsort(lstData)
-    '''
-        <A SER IMPLEMENTADO>
-=======
-        lstData = heapsort(lstData)
-
->>>>>>> 9d7f84aa129e886e11f2190261d6524bfc431206
-    elif(algorithm == 'mergesort'):
-        lstData = mergesort(lstData)
+def mergesort(lst:list,ini:int,meio:int,fim:int):
     
-    '''
-    else:
-        print('Algorithm not found')
-        print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')
-    '''
-    #showUids(lstData)
-<<<<<<< HEAD
-    return tempo
+    if len(lst) > 1:
 
+        meio = len(lst)//2
+        #também é valido: meio = int(len(lst)/2)
+
+        lstLeft = lst[:meio]
+        lstRight = lst[meio:]
+
+        mergesort(lstLeft,0,len(lstLeft)//2,meio-1)
+        mergesort(lstRight,meio,meio+(len(lstRight)//2),fim-1)
+
+        i = 0
+        j = 0
+        k = 0
+
+        while i < len(lstLeft) and j < len(lstRight):
+
+            if ((compareTo(lstLeft[i],lstRight[j]) != 1)):
+                lst[k]=lstLeft[i]
+                i += 1
+            else:
+                lst[k]=lstRight[j]
+                j += 1
+            k += 1
+
+        while i < len(lstLeft):
+
+            lst[k]=lstLeft[i]
+            i += 1
+            k += 1
+
+        while j < len(lstRight):
+            lst[k]=lstRight[j]
+            j += 1
+            k += 1
+    return lst
 
 def introsort(lst:list):
     deepest = math.log2(len(lst))
@@ -190,7 +162,34 @@ def introsort(lst:list):
     else:
         pivot = Partition(lst,0,nElem-1)
         introsort(lst[:pivot-1])
-        introsort(lst[pivot+1:])
-=======
+        introsort(lst[pivot+1:])   
+
+# Timsort/Introsort/Smoothsort/Patiencesorting
+
+# Executa o algoritmo e retorna o tempo gasto.
+def sortCollection(algorithm: str,lstData : list ):
+    # "Switch case"
+    if(algorithm == 'selectionsort'):
+        lstData = selectionsort(lstData)
+    elif (algorithm == 'insertionsort'):
+        lstData = insertionsort(lstData)
+    elif(algorithm == 'quicksort'):
+        lstData = quicksort(lstData,0,len(lstData)-1)
+    elif(algorithm == 'heapsort'):
+        lstData = heapsort(lstData)
+    elif(algorithm == 'introsort'):
+        lstData = introsort(lstData)
+    elif(algorithm == 'mergesort'):
+        meio = len(lstData)//2
+        lstData = mergesort(lstData,0,meio,len(lstData)-1)
+    else:
+        print('Algorithm not found')
+        print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')       
+    '''
+        <A SER IMPLEMENTADO>
+    
+    
+    '''   
+
+    #showUids(lstData)
     return lstData
->>>>>>> 9d7f84aa129e886e11f2190261d6524bfc431206
