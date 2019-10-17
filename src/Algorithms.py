@@ -1,5 +1,6 @@
 from PersonHandler import *
 import time
+import math
 
 def selectionsort(lst: list):
     i: int =0                                                                      #1  
@@ -43,6 +44,7 @@ def insertionsort(lst: list):
         lst[j+1] = person
         i = i+1                                                                    #
     # end while
+    
     return lst
 
 
@@ -109,6 +111,7 @@ def heapify(lst:list,tam:int,i:int):
 # mergesort
 # Timsort/Introsort/Smoothsort/Patiencesorting
 
+# Executa o algoritmo e retorna o tempo gasto.
 def sortCollection(algorithm: str,lstData : list ):
     ini = time.time()
     # "Switch case"
@@ -120,6 +123,8 @@ def sortCollection(algorithm: str,lstData : list ):
         quicksort(lstData,0,len(lstData)-1)
     elif(algorithm == 'heapsort'):
         heapsort(lstData)
+    elif(algorithm == 'introsort'):
+        introsort(lstData)
     '''
         <A SER IMPLEMENTADO>
     elif(algorithm == 'mergesort'):
@@ -135,77 +140,14 @@ def sortCollection(algorithm: str,lstData : list ):
     return tempo
 
 
-
-'''
-def mergeSort(lst):
-
-    tam = len(lst)
-
-    if tam > 1:
-        meio = tam//2
-        lstEsq = lst[:meio]
-        lstDir = lst[meio:]
-
-        mergeSort(lstEsq)
-        mergeSort(lstDir)
-
-        i = 0
-        j = 0
-        k = 0
-        tamEsq = len(lstEsq)
-        tamDir = len(lstDir)
-        while i < tamEsq and j < tamDir:
-            if lstEsq[i] < lstDir[j]:
-                lst[k] = lstEsq[i]
-                i += 1
-            else:
-                lst[k] = lstDir[j]
-                j += 1
-            k += 1
-        while i < tamEsq:
-            lst[k] = lstEsq[i]
-            i += 1
-            k += 1
-        while j < tamDir:
-            lst[k] = lstDir[j]
-            j += 1
-            k += 1
-
-def mergesort(lst:list,start:int,end:int):
-    if(start < end):
-        mid= (start+end)//2
-        mergesort(lst,start,mid)
-        mergesort(lst,mid+1,end)
-        merge(lst,start,mid,end)
-    #end mergesort
-
-def merge(lst:list,start:int,mid:int,end:int):
-    #separadores
-    n = mid - start + 1 #primeira partição
-    m = end - mid       #segunda partição
-    #Listas
-    A1 = lst[:n+1]
-    A2 = lst[:m+1]
-    #
-    for i in range (n):
-        A1 = lst[start+i-1]
-    #end for
-    for j in range (m):
-        A2 = lst[mid + j]
-    #end for
-    i=0
-    j=0
-
-    for k in range(start,end):
-        #A1[i] <= A2[j]
-        if(compareTo(A1[i],A2[j])!= 1):
-            lst[k] = A1[i]
-            i= int(i) + 1
-        #lst[k]==A2[j]
-        if(compareTo(lst[k],A2[j])==0):
-            j= int(j)+ 1
-        #
-    #end for
-
-
-'''
+def introsort(lst:list):
+    deepest = math.log2(len(lst))
+    nElem = len(lst)
+    if(nElem <= 1):
+        return
+    elif (nElem-1 > deepest):
+        heapsort(lst)
+    else:
+        pivot = Partition(lst,0,nElem-1)
+        introsort(lst[:pivot-1])
+        introsort(lst[pivot+1:])

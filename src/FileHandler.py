@@ -20,7 +20,8 @@ def readArq(arqName):
                 #Insert the data on person class.
                 person = Person(data[0],data[1],data[2],data[3],data[4],data[5])
                 lstData.append(person)
-    
+            #endif
+        #end while
     return lstData 
 
 #function that read a file and return a list with the data.

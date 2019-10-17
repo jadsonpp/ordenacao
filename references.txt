@@ -32,3 +32,8 @@ Merge Sort:
 Heap Sort:
     https://www.algorithmist.com/index.php/Heap_sort
     https://en.wikipedia.org/wiki/Heapsort
+
+
+intro sort:
+    https://pt.wikipedia.org/wiki/Intro_sort
+    https://en.wikipedia.org/wiki/Introsort
