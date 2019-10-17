@@ -2,6 +2,12 @@ from PersonHandler import *
 import time
 import math
 
+'''
+    Worst case - n²
+    medium case - n²
+    Best case - n²
+'''
+
 def selectionsort(lst: list):
     i: int =0                                                                      #1  
     while (i<len(lst)-1):                                                              #
@@ -26,8 +32,6 @@ def selectionsort(lst: list):
     medium case - n² (worst as the worst case)
     Best case - n
 '''
-
-
 def insertionsort(lst: list):
     i: int = 2                                                                    #
     while(i < len(lst)):                                                             #
@@ -92,12 +96,11 @@ def buildMaxHeap(lst:list):
         i-=1
 
 def heapify(lst:list,tam:int,i:int):
-    # iList = Tamanho da lista, i = index que o buildHeap manda.
     left = 2 * i 
     right = (2*i) + 1 
+    #iMax is the index of the largest num.
     iMax:int = i
     #lst[left] > lst[i]) e esq <= tamanho da lista
-    #iMax is the index of the largest num.
     if ((left < tam) and (compareTo(lst[left],lst[iMax]) == 1)):
         iMax = left
     #lst[dir]>lst[max] e dir <= tamanho da lista
@@ -108,35 +111,72 @@ def heapify(lst:list,tam:int,i:int):
         lst[i],lst[iMax] = lst[iMax],lst[i]
         heapify(lst,tam,iMax) 
 
-# mergesort
+def mergesort(lst:list):
+    if(len(lst) <= 1):
+        return lst
+
+    mid = (len(lst))//2
+    lstLeft = lst[:mid]
+    lstRight = lst[mid:]
+    lstLeft = mergesort(lstLeft)
+    lstRight = mergesort(lstRight)
+
+    return merge(lstLeft,lstRight)
+
+def merge(lstLeft:list,lstRight:list):
+    lstMerge = []
+    while (lstLeft != [] and lstRight != []):
+        #lstLeft <= lstRight
+        if ((compareTo(lstLeft[0],lstRight[0]) != 1)):
+            lstMerge.append(lstLeft.pop(0))
+        else:
+            lstMerge.append(lstRight.pop(0))
+
+    if(lstLeft!=[]):
+        while(lstLeft != []):
+            lstMerge.append(lstLeft.pop(0))
+    if(lstRight != []):
+        while(lstRight != []):
+            lstMerge.append(lstRight.pop(0)) 
+
+    return lstMerge
+
 # Timsort/Introsort/Smoothsort/Patiencesorting
 
+<<<<<<< HEAD
 # Executa o algoritmo e retorna o tempo gasto.
+=======
+
+>>>>>>> 9d7f84aa129e886e11f2190261d6524bfc431206
 def sortCollection(algorithm: str,lstData : list ):
-    ini = time.time()
     # "Switch case"
     if(algorithm == 'selectionsort'):
         lstData = selectionsort(lstData)
     elif (algorithm == 'insertionsort'):
         lstData = insertionsort(lstData)
     elif(algorithm == 'quicksort'):
-        quicksort(lstData,0,len(lstData)-1)
+        lstData = quicksort(lstData,0,len(lstData)-1)
     elif(algorithm == 'heapsort'):
+<<<<<<< HEAD
         heapsort(lstData)
     elif(algorithm == 'introsort'):
         introsort(lstData)
     '''
         <A SER IMPLEMENTADO>
+=======
+        lstData = heapsort(lstData)
+
+>>>>>>> 9d7f84aa129e886e11f2190261d6524bfc431206
     elif(algorithm == 'mergesort'):
-        lstDatas = mergesort(lstDatas)
+        lstData = mergesort(lstData)
     
+    '''
     else:
         print('Algorithm not found')
         print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')
     '''
-    fim = time.time()
-    tempo = fim-ini
     #showUids(lstData)
+<<<<<<< HEAD
     return tempo
 
 
@@ -151,3 +191,6 @@ def introsort(lst:list):
         pivot = Partition(lst,0,nElem-1)
         introsort(lst[:pivot-1])
         introsort(lst[pivot+1:])
+=======
+    return lstData
+>>>>>>> 9d7f84aa129e886e11f2190261d6524bfc431206
