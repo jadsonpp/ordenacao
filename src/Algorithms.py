@@ -172,7 +172,7 @@ def sortCollection(algorithm: str,lstData : list ):
     if(algorithm == 'selectionsort'):
         lstData = selectionsort(lstData)
     elif (algorithm == 'insertionsort'):
-        lstData = insertionsort(lstData)
+        lstData = insertionsort(lstData,0,len(lstData)-1)
     elif(algorithm == 'quicksort'):
         lstData = quicksort(lstData,0,len(lstData)-1)
     elif(algorithm == 'heapsort'):
