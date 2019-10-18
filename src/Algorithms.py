@@ -163,20 +163,23 @@ def introsort(lst:list):
         pivot = Partition(lst,0,nElem-1)
         introsort(lst[:pivot-1])
         introsort(lst[pivot+1:])   
-        
+
+def minValue(n1:int, n2:int):
+    minValue = n1 if n1<n2 else n2         
+    return minValue
 
 def timsort(lst:list):  
     tam = len(lst)
     
     for i in range(0,tam,32):
-        insertionsort(lst,i,minimo((i+31),(tam-1)))
+        insertionsort(lst,i,minValue((i+31),(tam-1)))
 
     size:int = 32    
     while size < tam:
 
         for left in range(0,tam,2*size):
             mid = left+size-1
-            right = minimo((left+2*size-1),(tam-1))
+            right = minValue((left+2*size-1),(tam-1))
 
             mergesort(lst,left,mid,right)
         
@@ -184,7 +187,6 @@ def timsort(lst:list):
     return lst
 
 
-# Timsort/Introsort/Smoothsort/Patiencesorting
 
 # Executa o algoritmo e retorna o tempo gasto.
 def sortCollection(algorithm: str,lstData : list ):
@@ -202,14 +204,11 @@ def sortCollection(algorithm: str,lstData : list ):
     elif(algorithm == 'mergesort'):
         meio = len(lstData)//2
         lstData = mergesort(lstData,0,meio,len(lstData)-1)
+    elif(algorithm == 'timsort'):
+        timsort(lstData)
     else:
         print('Algorithm not found')
-        print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')       
-    '''
-        <A SER IMPLEMENTADO>
-    
-    
-    '''   
+        print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')        
 
     #showUids(lstData)
     return lstData
