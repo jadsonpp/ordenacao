@@ -32,15 +32,15 @@ def selectionsort(lst: list):
     medium case - n² (worst as the worst case)
     Best case - n
 '''
-def insertionsort(lst: list):
-    i: int = 2                                                                    #
-    while(i < len(lst)):                                                             #
+def insertionsort(lst: list,left:int,right:int):
+    i: int = left + 1                                                                   #
+    while(i < right+1):                                                             #
         #
         person = lst[i]
         j:  int = i-1                                                                #
         # search the true spot of person.
         #Person < lst[j]
-        while(j >= 0 and (compareTo(person, lst[j]) == -1)):           #
+        while(j >= left and (compareTo(person, lst[j]) == -1)):           #
             lst[j+1] = lst[j]
             j = j - 1                                                              #
         # end while
