@@ -163,6 +163,26 @@ def introsort(lst:list):
         pivot = Partition(lst,0,nElem-1)
         introsort(lst[:pivot-1])
         introsort(lst[pivot+1:])   
+        
+
+def timsort(lst:list):  
+    tam = len(lst)
+    
+    for i in range(0,tam,32):
+        insertionsort(lst,i,minimo((i+31),(tam-1)))
+
+    size:int = 32    
+    while size < tam:
+
+        for left in range(0,tam,2*size):
+            mid = left+size-1
+            right = minimo((left+2*size-1),(tam-1))
+
+            mergesort(lst,left,mid,right)
+        
+        size = 2*size
+    return lst
+
 
 # Timsort/Introsort/Smoothsort/Patiencesorting
 
