@@ -88,12 +88,14 @@ def heapsort(lst: list):
         lst[0],lst[i] = lst[i],lst[0]
         i -= 1 
         heapify(lst,i,0)
+    return lst
 
 def buildMaxHeap(lst:list):
     i = (len(lst)//2)
     while(i>=0):
         heapify(lst,len(lst),i)
         i-=1
+    return lst
 
 def heapify(lst:list,tam:int,i:int):
     left = 2 * i 
@@ -110,7 +112,7 @@ def heapify(lst:list,tam:int,i:int):
     if(iMax != i):
         lst[i],lst[iMax] = lst[iMax],lst[i]
         heapify(lst,tam,iMax) 
-
+    return lst
 
 
 def mergesort(lst:list,ini:int,meio:int,fim:int):
@@ -162,7 +164,8 @@ def introsort(lst:list):
     else:
         pivot = Partition(lst,0,nElem-1)
         introsort(lst[:pivot-1])
-        introsort(lst[pivot+1:])   
+        introsort(lst[pivot+1:])
+    return lst
 
 def minValue(n1:int, n2:int):
     minValue = n1 if n1<n2 else n2         
@@ -171,10 +174,10 @@ def minValue(n1:int, n2:int):
 def timsort(lst:list):  
     tam = len(lst)
     
-    for i in range(0,tam,32):
-        insertionsort(lst,i,minValue((i+31),(tam-1)))
+    for i in range(0,tam,2048):
+        insertionsort(lst,i,minValue((i+2047),(tam-1)))
 
-    size:int = 32    
+    size:int = 2048    
     while size < tam:
 
         for left in range(0,tam,2*size):
