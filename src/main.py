@@ -15,7 +15,7 @@ def main():
         fim = time.time() 
         tempo = fim-ini
         print(algorithm,tempo*1000,len(inputData))
-        
+        writeArqCsv(data,outputData)
         #testeArqCsv(tempo,algorithm,len(inputData),sys.argv[3])
                        
         

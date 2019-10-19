@@ -63,12 +63,9 @@ def Partition(lst: list, start: int, end: int):
     pivot: person = lst[end]
     lower: int = start - 1
     for i in range(start, end):
-        #lst[i]<= pivot
         if(compareTo(lst[i], pivot) == -1):
             lower += 1
             lst[lower], lst[i] = lst[i], lst[lower]
-        # end if
-    # end for
     lst[lower+1], lst[end] = lst[end], lst[lower+1]
     return lower+1
 
@@ -78,7 +75,7 @@ def quicksort(lst: list, start: int, end: int):
         partition = Partition(lst, start, end)
         quicksort(lst, start, partition-1)
         quicksort(lst, partition+1, end)
-    # end if
+    return lst
 
 
 def heapsort(lst: list):
@@ -100,12 +97,9 @@ def buildMaxHeap(lst:list):
 def heapify(lst:list,tam:int,i:int):
     left = 2 * i 
     right = (2*i) + 1 
-    #iMax is the index of the largest num.
     iMax:int = i
-    #lst[left] > lst[i]) e esq <= tamanho da lista
     if ((left < tam) and (compareTo(lst[left],lst[iMax]) == 1)):
         iMax = left
-    #lst[dir]>lst[max] e dir <= tamanho da lista
     if((right < tam) and (compareTo(lst[right],lst[iMax]) == 1)):
         iMax = right
 
@@ -120,7 +114,6 @@ def mergesort(lst:list,ini:int,meio:int,fim:int):
     if len(lst) > 1:
 
         meio = len(lst)//2
-        #também é valido: meio = int(len(lst)/2)
 
         lstLeft = lst[:meio]
         lstRight = lst[meio:]
@@ -208,10 +201,9 @@ def sortCollection(algorithm: str,lstData : list ):
         meio = len(lstData)//2
         lstData = mergesort(lstData,0,meio,len(lstData)-1)
     elif(algorithm == 'timsort'):
-        timsort(lstData)
+        lstData = timsort(lstData)
     else:
         print('Algorithm not found')
         print('Nome de arquivo incorreto, tente: selectsort, insertsort, mergesort, quicksort, heapsort')        
 
-    #showUids(lstData)
     return lstData
