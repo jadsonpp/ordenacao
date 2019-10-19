@@ -7,8 +7,8 @@ import os
 #function that read a file and return a list with the data.
 def readArq(arqName):
     lstData: list = []
-    cwd = os.getcwd()+'/trab2-data'  # Get the current working directory (cwd)
-    with open(os.path.join(cwd, arqName),'r') as arq:
+    currentDirectory = os.getcwd()+'/trab2-data'  
+    with open(os.path.join(currentDirectory, arqName),'r') as arq:
         data = arq.readline() 
         while(data!= ''):
             data = arq.readline()
@@ -27,8 +27,8 @@ def readArq(arqName):
 #function that read a file and return a list with the data.
 def readArqCsv(arqName):
     lstData: list = []
-    cwd = os.getcwd()+'/trab2-data'  # Get the current working directory (cwd)
-    with open(os.path.join(cwd, arqName),'r') as arq:
+    currentDirectory = os.getcwd()+'/trab2-data'  
+    with open(os.path.join(currentDirectory, arqName),'r') as arq:
         #Split the csv file
         datas = csv.reader(arq,delimiter=',')
         #jump the header
@@ -42,16 +42,16 @@ def readArqCsv(arqName):
     return lstData 
 
 def writeArqCsv(datas,arqName):
-    cwd = os.getcwd()+'/trab2-data'  # Get the current working directory (cwd)
-    with open(os.path.join(cwd, arqName),'w',newline='') as arq:
+    currentDirectory = os.getcwd()+'/trab2-data'  
+    with open(os.path.join(currentDirectory, arqName),'w',newline='') as arq:
         datawriter = csv.writer(arq, delimiter=',')
         for data in datas:
             datawriter.writerow([data.email,data.gender,data.uid,data.birthdate,data.height,data.weight])
     return 0
 
 def testeArqCsv(tempo,algoritmo,tamanho,arqName):
-    cwd = os.getcwd()+'/trab2-data-output'  # Get the current working directory (cwd)
-    with open(os.path.join(cwd, arqName),'a',newline='') as arq:
+    currentDirectory = os.getcwd()+'/trab2-data-output' 
+    with open(os.path.join(currentDirectory, arqName),'a',newline='') as arq:
         datawriter = csv.writer(arq, delimiter=',')
         datawriter.writerow([algoritmo,tempo,tamanho])
        
