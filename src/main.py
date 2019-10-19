@@ -14,7 +14,7 @@ def main():
         data = sortCollection(algorithm,inputData)
         fim = time.time() 
         tempo = fim-ini
-        print(algorithm,tempo,len(inputData))
+        print(algorithm,tempo*1000,len(inputData))
         
         #testeArqCsv(tempo,algorithm,len(inputData),sys.argv[3])
                        
