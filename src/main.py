@@ -17,18 +17,6 @@ def main():
         print(algorithm,tempo*1000,len(inputData))
         writeArqCsv(data,outputData)
         #testeArqCsv(tempo,algorithm,len(inputData),sys.argv[3])
-                       
-        
-
-    #inputName = parseInputFileName(args)
-    #outputName = parseOutputFileName(args)
-    #A =  readCSV(inputName)
-    #initTime = GetCPUTime
-    #xyzSort(A)
-    #finishTime = GetCpuTime
-    #writeCsv(A,outputName)
-    #reportTime(A,initTIme,finishTime)
-    #end procedure
     return 0
 
 if __name__ == "__main__":
